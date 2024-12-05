@@ -99,3 +99,14 @@ do the time sharing software is like async/await
 
 not fist this and then that 
 do the jobs in between of each other
+
+so we can't check the button each time
+event-oriented-programming (interrupt):
+cpu must support it though
+it is hardware approach you connect to hardware 
+
+
+in software you can do it with `iNotify` whenever changes 
+`tail` command works like this
+
+polling is also another way instead of occupying cpu with a infinite loop
