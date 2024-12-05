@@ -4,7 +4,8 @@
 
 int main(){
 
-    int  a=20, b=10;
+    int  a=10; 
+    int b=11;
     int c = a + b;
     printf("%d/n", c);
     return 0;
