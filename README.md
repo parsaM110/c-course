@@ -114,5 +114,16 @@ polling is also another way instead of occupying cpu with a infinite loop
 create assembly of c code:
 ```
 gcc -S test.c -o test.s
-
+```
+embed src file with excusable and no optimization just my code:
+```
+gcc -g test.c -o test
+```
+so for instance"
+```
+~/test$ gcc -g test.c
+~/test$ ls
+a.out  README.md  test  test.c  test.s
+~/test$ ll a.out
+-rwxrwxr-x 1 ubuntu ubuntu 17192 Dec  5 06:06 a.out*
 ```
