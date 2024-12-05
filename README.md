@@ -116,10 +116,38 @@ every cpu have for example in x86 it only have 3 interrupt(hardware)
 in assembly by int 
 int 03 means debug = stop and give me the control
 
+
 gdb uses exactly this for debugging 
 so the code is changed
 some malwares know this
 you should debugging by hardware not software like softICE
+
+atomic means the statement got executed in one step
+and there would be no race condition
+
+general and static variables are in BSS and Data segment shared in whole program and not thread software
+and each thread want to use or edit it 
+so it is bad practice to use it
+
+if I save password or license and dump the memory into hard
+password is saved on hard
+
+if you write firmware and have mmu the whole memory is used and no dyanmic static part 
+the whole memory is yours no os no paging
+and sectioning it is by compiler
+
+in firmware the whole memory is yours for compiler
+in os virtual memory is used
+
+.exe file on hard is binary image file
+
+stack overflow + payload = shell code
+cause the app unintentionally be executed
+
+stack overflow is now detected by some methods
+for example there is a signature between heap and stack, if overflow happens the signature is changed, os detect kill the app
+overflow and segmentation fault is made by os
+firmware's are more prone to these attacks
 
 create assembly of c code:
 ```
@@ -145,4 +173,48 @@ next (step over function)
 layout split
 b 4
 ```
+RAM (memory) paging
+doesn't get the reason of need to virtual memory
+swap -> ram is full the less used app is moved to hard to free up some space
+
+
+stack is memory which automatic and compiler create 
+all local variables in functions are in stack and when function ends they are freed
+
+
+heap is memory which is free and is for programmers
+
+stack is like lost in wikipedia 
+you go more and more like the code I have give for functions that are having inside calls
+
+in heap you may not free memory
+and it stays in memory (memory leaks)
+
+some design patters says using heap is prohibited like NASA
+
+memory profiler :
+valgrind shows memory leak
+
+java and python use garbage collector for memory leak
+
+rust uses ownership for memory leak
+
+
+## Storage Class
+- Auto
+	- Local (Stack)
+	- Global (BSS, DS)
+- Manual
+	- Heap
+auto, static, global, extern, const, ...
+
+300 :
+- [000000001][001011100] -> Big Endian (still File format, Protocol)
+- [001011100][000000001] -> Little Endian (intel)
+
+	IP is Big Endian -> cisco, microtik
+	microtik : mips be (big endian) [old]
+	sdn (software defined network) and now run linux [new]
+
+
 
