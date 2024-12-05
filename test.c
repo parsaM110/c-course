@@ -4,6 +4,8 @@
 
 int main(){
 
-    printf("hello worold");
-    return 10;
+    int  a=20, b=10;
+    int c = a + b;
+    printf("%d/n", c);
+    return 0;
 }
