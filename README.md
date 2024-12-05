@@ -111,6 +111,16 @@ in software you can do it with `iNotify` whenever changes
 
 polling is also another way instead of occupying cpu with a infinite loop
 
+every cpu have for example in x86 it only have 3 interrupt(hardware)
+
+in assembly by int 
+int 03 means debug = stop and give me the control
+
+gdb uses exactly this for debugging 
+so the code is changed
+some malwares know this
+you should debugging by hardware not software like softICE
+
 create assembly of c code:
 ```
 gcc -S test.c -o test.s
@@ -127,3 +137,12 @@ a.out  README.md  test  test.c  test.s
 ~/test$ ll a.out
 -rwxrwxr-x 1 ubuntu ubuntu 17192 Dec  5 06:06 a.out*
 ```
+```
+gdb -tui a.out
+ni (next assembly)
+step 
+next (step over function)
+layout split
+b 4
+```
+
