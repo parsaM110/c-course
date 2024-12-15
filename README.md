@@ -221,14 +221,54 @@ auto, static, global, extern, const, ...
 	microtik : mips be (big endian) [old]
 	sdn (software defined network) and now run linux [new]
 
-type :
+C Data Types :
+
+- Numbers
+	- char, int, float, double, pointer, void
+- Aggregator 
+	- struct, union, enum, array
+
+Modifiers :
 ```
 short 
 long 
 long long
+signed: 2's compliment
+unsigned
+```
+
+64 bit system default :
+```
+int a; == signed long int a;
 ```
 SMP means symmetric multi processing
 ```
 uname -a
 Linux ubuntu-2204 6.8.0-49-generic #49~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Nov  6 17:42:15 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+```
+
+short char : 1 Byte
+
+300 -> 100101100
+
+1[00101100] -> 44
+
+```
+./test
+100
+44
+*** stack smashing detected ***: terminated
+Aborted (core dumped)
+```
+
+linux root id is 0
+```
+ id root
+uid=0(root) gid=0(root) groups=0(root)
+```
+
+linux first user start from 1000
+```
+id ubuntu
+uid=1000(ubuntu) gid=1000(ubuntu) groups=1000(ubuntu),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),122(lpadmin),134(lxd),135(sambashare)
 ```

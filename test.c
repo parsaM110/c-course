@@ -2,9 +2,11 @@
 
 
 int main(){
+    unsigned char a;
+    scanf("%d", &a);
+    a += 200;
+    printf("%d\n", a);
+    return 0;
 
-    int a = 10;
-    int b = 11;
-    int c = 12;
-    short int d = 13;
 }
+
