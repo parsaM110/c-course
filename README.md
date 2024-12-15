@@ -173,6 +173,11 @@ next (step over function)
 layout split
 b 4
 ```
+or 
+```
+gcc -g test.c test
+gdb -tui ./test
+```
 RAM (memory) paging
 doesn't get the reason of need to virtual memory
 swap -> ram is full the less used app is moved to hard to free up some space
@@ -216,5 +221,14 @@ auto, static, global, extern, const, ...
 	microtik : mips be (big endian) [old]
 	sdn (software defined network) and now run linux [new]
 
-
-
+type :
+```
+short 
+long 
+long long
+```
+SMP means symmetric multi processing
+```
+uname -a
+Linux ubuntu-2204 6.8.0-49-generic #49~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Nov  6 17:42:15 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+```
