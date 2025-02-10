@@ -272,3 +272,39 @@ linux first user start from 1000
 id ubuntu
 uid=1000(ubuntu) gid=1000(ubuntu) groups=1000(ubuntu),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),122(lpadmin),134(lxd),135(sambashare)
 ```
+for compiling the code only with declaration:
+```
+gcc  -g -c test.c -o test
+```
+without -c you will get error for test function
+but the binary output can't be executed 
+because it only make object file not linking stage
+in linking stage compiler check the body and gives you error for not defining the function
+
+C is Forward Declarative lang
+
+default initialization (declaration and definition):
+```c
+int data;
+int a,b,c;
+```
+declaration and definition and initialization:
+```c
+int data = 10;
+int a=1,b=2,c;
+int data;  // is also define (memory allocation is done)
+```
+
+variabels can become grabage if stored in heap or stack | not in global or BSS
+
+Storage class says where & when something in class is going to live:
+- Storage
+- Initial : initial value
+- Scope : where we can see the variable (.eg we can see it only in main fucntion)
+- Lifetime : when did it wake up and we it dies
+
+Storage Class:
+- Auto ->  Stack, everything stored in Stack is initialed as Garbage(everything was there become intial value, C doesn't make it 0), Block, Block,
+- Extern -> Data Segment/BSS(are part of binary image of program) , your initial value or 0, Global, Start2End
+- Static -> DS/BSS , 0 , Global->G/L->Block, Start2End
+- Register
