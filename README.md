@@ -119,7 +119,7 @@ int 03 means debug = stop and give me the control
 
 gdb uses exactly this for debugging 
 so the code is changed
-some malwares know this
+some malware know this
 you should debugging by hardware not software like softICE
 
 atomic means the statement got executed in one step
@@ -132,7 +132,7 @@ so it is bad practice to use it
 if I save password or license and dump the memory into hard
 password is saved on hard
 
-if you write firmware and have mmu the whole memory is used and no dyanmic static part 
+if you write firmware and have mmu the whole memory is used and no dynamic static part 
 the whole memory is yours no os no paging
 and sectioning it is by compiler
 
@@ -295,16 +295,29 @@ int a=1,b=2,c;
 int data;  // is also define (memory allocation is done)
 ```
 
-variabels can become grabage if stored in heap or stack | not in global or BSS
+variables can become garbage if stored in heap or stack | not in global or BSS
 
 Storage class says where & when something in class is going to live:
 - Storage
 - Initial : initial value
-- Scope : where we can see the variable (.eg we can see it only in main fucntion)
+- Scope : where we can see the variable (.eg we can see it only in main function)
 - Lifetime : when did it wake up and we it dies
 
+
 Storage Class:
-- Auto ->  Stack, everything stored in Stack is initialed as Garbage(everything was there become intial value, C doesn't make it 0), Block, Block,
+- Auto ->  Stack, everything stored in Stack is initialed as Garbage(everything was there become initial value, C doesn't make it 0), Block, Block(auto in cpp means auto detect variable type)
 - Extern -> Data Segment/BSS(are part of binary image of program) , your initial value or 0, Global, Start2End
 - Static -> DS/BSS , 0 , Global->G/L->Block, Start2End
-- Register
+- Register -> CPU, Garbage, Block, Block
+- Dynamic memory initialization (Heap) -> no storage class | no lifetime | no visibility -> everything is manual(c doing nothing)
+> Static for global is used for sharing data in multi thread(it makes race condition | you should use Mutex or Semaphore)
+
+-  External used in library and module development
+- best to avoid static and external variables  because data is stored is DS(data segment) binary size become big and causes race condition and cause security issues | but good in speed 
+
+- Auto var when {} closed data is removed and we got no memory leaks
+- Register used for speed concerns
+- don't communicate using data, use data in communication (don't allocate a part of RAM to a memory and tell all to go and work with here, instead we take a part of RAM and passes to those who needs it)(don't memory share use communication (message queue, ipc, socket) and if you need to share in 2 thread, use partitioning )
+- for example in matrix multiplication (use half part for one and the other for the next and then sum it up| it is hard? yes! implementation is effing hard)
+- `volatile` a variable : don't let compiler optimize the variable and change it(used in embedded system | graphic memory is a memory mapper, it is volatile, hardware is managing it, don't touch it, software is only using it)
+- we don't have function signature in c, we have in cpp for methods in class
