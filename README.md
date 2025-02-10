@@ -321,3 +321,66 @@ Storage Class:
 - for example in matrix multiplication (use half part for one and the other for the next and then sum it up| it is hard? yes! implementation is effing hard)
 - `volatile` a variable : don't let compiler optimize the variable and change it(used in embedded system | graphic memory is a memory mapper, it is volatile, hardware is managing it, don't touch it, software is only using it)
 - we don't have function signature in c, we have in cpp for methods in class
+## main factions
+
+- microsoft have no return value so many write `void main(){}`
+- in writing firmware we don't have return value we have a `while(1){}` if it ends the cpu is halted and nothing happen and you have to restart.
+
+### some registry
+- eax, ebx, ecx, edx, edi, esi general purpose registers
+- we have copying for all values
+- in cpp we have `passbyrefrence`, in c we don't
+- in c we have `passbyvalue` and `passbypointer`
+
+### math operation in c 
+- \+
+- \-
+- \*
+- /
+- % 
+- &
+- | 
+- ^
+- ~
+- \>>
+- <<
+
+### add = to operation
+- `a \= 2` means make a in half
+- `a &= 2` make a bitwise and with 2 
+- `=` has answers so `a=b=11` is valid c but it doesn't have answer in python
+- we have no boolean in c so 0-> false, everything else -> true in if or while
+
+### expressions  
+- function call , if are expressions not statement -> by ; we  make statement
+- you can convert couple of statement into one expression by {} block
+- in gcc4 this doesn't work `if(a==20){}` and you should write `if(a=20){}`
+
+### while & for
+- `while(1);` is used to put micro on working (used in firmware)
+- `do{}while(...)` is useful for  reading input 
+- `for(init;cond;update)` in `for` first expression is executed ones and then never and last also executed after successful cond
+- for(;;); //-> while(1);
+
+in C99+ you can do this : `for(int i=0; i<0; i=i+1){}` it is better than 
+```c
+int b=0;
+for(;b<10;b=b+1){}
+``` 
+because i in first case is destroyed but in first case loop var is leaked(this is the reason of cpp update in linux kernel)
+- continue: in for says go to next iteration
+- break: cancel whole thing
+- switch case only works for digits and proper number and is faster than if because of asm implementation(it create map of real number)
+```c
+switch(a){
+	case 1:
+		...
+	case 2:
+		...
+	case 3:
+		...
+	default:
+		...
+}
+```
+and if a was equal 2 it  jumps to `case 2` then it goes to `case 3` and until end, so if you should use break after each case if you want each scope code be for each case
