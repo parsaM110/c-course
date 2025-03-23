@@ -10,6 +10,7 @@ void generate_random_numbers(int *buf, size_t count, int min, int max){
         *(buf+i) = min + random() % (max - min+1);
     }
 
+    // other method for not passing count is using invalid value like string they use null char you consider something like negentlive number to stop
 }
 
 void print_array(const int *buf, size_t count){
