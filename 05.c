@@ -1,46 +1,25 @@
 #include <stdio.h>
+#include <stdlib.h>
+
+struct Node{
+        int data;
+        struct Node *next; // like calling function inside of it | you can do it 
+    };
 
 
 int main(){
 
-    int **A; // pointer -> pointer -> integer (or array of integer) but mostly they mean array
+    struct Node *head=NULL, *cur=NULL;
 
-    int *ptr = &x;
+    cur = malloc(sizeof(struct Node));
 
-    A = &ptr;
+    // (*cur).data = 100;
+    // (*cur).next = NULL;
 
-    // dereference: *(*A)
+    // in c for dereference of structure to pointer you can use ->
 
-    // pthread_join is ** function
-    // we used if we want to pass pointer to address to a function
-    
-    int A[2][3]; // i still int* and not int **
-
-    int **B; // this is you have a array of pointers like:
-    int *C[10]; // int **
-    // so you can select different part of RAM
-    // heap is always slower than stack
-
-    char **C; // is mostly used for array of strings and also now you can put null for end of it
-
-    // if we want to allocate to heap (we know stack | we define variable and put the address to pointer)
-
-    int *data = NULL;
-
-    // malloc give you heap memory
-    //data = malloc(20);
-    data = malloc(sizeof(int) * 5);
-
-
-    
-
-     // if not freed -> it would be memory leak
-
-    *(data+0) = 100;
-    *(data+1) = 200;
-    *(data+2) = 300;
-
-    free(data); // free the memory
+    cur->data = 100;
+    cur->next = NULL;
 
     return 0;
 
