@@ -2,39 +2,44 @@
 #include <stdlib.h>
 #include <time.h>
 
-void generate_random_numbers(int *buffer, size_t count);
+// it is hard to use this damn sizeof
+# define SIZE(A) sizeof(A)/ sizeof(A[0])
+
+void generate_random_numbers(int *buf, size_t count, int min, int max);
 void print_array(const int *buf, size_t count);
 
 
 int main(){
 
-    int n;
+    int buf[20];
+    // generate_random_numbers(buf, sizeof(buf)/sizeof(buf[0]), 10, 50);
+    // print_array(buf, sizeof(buf)/sizeof(buf[0]));
 
-    // for optical values we can use NULL for tloc in time
-    // tloc is pointer because in past it used to be an array 
-    // because there was no long type
-    srandom(time(NULL));
-    // n = (int)(((double) random() / RAND_MAX) * 100);
-    // some system dont have float
-    // n = random() % 101;
+    generate_random_numbers(buf, SIZE(buf), 10, 50);
+    print_array(buf, SIZE(buf));
 
-    // for 20 - 50 we can do 
-    n = 20 + random () % 31;
-    printf("%d\n", n);
-    
+    //remember random number for each 1 second
+
+    return 0;
 
 
 }
 
-void generate_random_numbers(int *buffer, size_t count){
-
-    // srand : seed : and change the start point by time
-    // urandom is by linux kernel and used by mouse and keyboard
-    // in miliary or scientific usage they use physical random generator like radioactive or electronic devices
-    // unsigned is dangerous (in signed if you overflow your will be negentlive but you cant figure it out in signed)
+void generate_random_numbers(int *buf, size_t count, int min, int max){
+    
+    srandom(time(NULL));
+    for(int i=0; i < count; i++){
+        *(buf+i) = min + random() % (max - min+1);
+    }
 
 }
 
 void print_array(const int *buf, size_t count){
+
+    for(int i=0; i < count; i++){
+        printf("%d ", *(buf + i));
+    }
+
+    printf("\n");
 
 }
