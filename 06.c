@@ -33,8 +33,11 @@ int main(){
     // head but is going to go to heap
     // we want to pass this linked list to different functions like delete , ... 
 
-    
-    tail = linklist_add(head, 10);
+    for(int i=10; i<20; i++){
+        int d;
+        scanf("%d",&d);
+        tail = linklist_add(head, d);
+    }
     if(!head){
         head = tail;
     }
