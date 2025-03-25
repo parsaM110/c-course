@@ -1,15 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Node{
+struct _Node; //declare (in older c you have to use it like this but in newer no need for declare)
+typedef struct _Node Node; //aliasing
+
+struct _Node{ // _Node means it is internal
         int data;
-        struct Node *next; 
+        Node *next;  
+        // in newer gcc versions you can say only by typedef: 
+        // Node *next;
     };
 
 
-struct Node  *linklist_add(struct Node *H, int data){
 
-    struct Node *tmp = malloc(sizeof(struct Node));
+Node  *linklist_add(Node *H, int data){
+
+    Node *tmp = malloc(sizeof(Node));
     tmp->data = data;
     tmp->next = NULL;
 
@@ -23,9 +29,9 @@ struct Node  *linklist_add(struct Node *H, int data){
 
 }
 
-void linklist_move(struct Node *H, size_t n)
+void linklist_move(Node *H, size_t n)
 {
-    struct Node *tmp, *cur=H;
+    Node *tmp, *cur=H;
     int i =0;
     for(; i<n && cur && cur->next && cur->next->next; i++){
         cur = cur->next;
@@ -46,7 +52,7 @@ void linklist_move(struct Node *H, size_t n)
 
 int main(){
 
-    struct Node *head=NULL, *tail=NULL, *cur=NULL;
+    Node *head=NULL, *tail=NULL, *cur=NULL;
 
     // if we define simple variable in stack it is going to be automatic 
     // *cur we are changing the it to different places
