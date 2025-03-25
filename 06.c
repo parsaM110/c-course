@@ -23,6 +23,26 @@ struct Node  *linklist_add(struct Node *H, int data){
 
 }
 
+void linklist_move(struct Node *H, size_t n)
+{
+    struct Node *tmp, *cur=H;
+    int i =0;
+    for(; i<n && cur && cur->next && cur->next->next; i++){
+        cur = cur->next;
+    }
+    if((n-i) != -1){
+            return ;
+        }
+    tmp = cur->next;
+    cur->next = tmp->next;
+
+    while(cur->next){
+        cur = cur->next;
+    }
+    cur->next = tmp;
+    tmp->next = NULL;
+}
+
 
 int main(){
 
