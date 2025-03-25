@@ -17,8 +17,8 @@ struct Node  *linklist_add(struct Node *H, int data){
     {
         H = H->next;
     }
-
-     H->next = tmp;
+    if(H) 
+        H->next = tmp;
      return tmp;
 
 }
