@@ -1,12 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/stat.h>
 
 int main(){
 
 
     FILE *f;
 
-    f = fopen("testfile1.txt","w");
+    if( (f = fopen("testfile1.txt","w")) == NULL){
+        printf("Failed to open file\n");
+        exit(1);
+    }
 
     if(fwrite("Hello world",1 ,11, f) != 11){ //11 * 1 Byte
     
@@ -16,7 +20,10 @@ int main(){
     }
     printf("File Written Successfully\n");
     fclose(f); //if you don't close 
-
+    if(chmod("testfile1.txt", 0600) == -1){ // linux permissions are 8base numbers (Octals)
+        printf("Failed to set file permissions\n");
+        exit(1);
+    }
     return 0;
 }
 
