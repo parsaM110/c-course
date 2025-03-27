@@ -8,8 +8,7 @@
 
 int get_file_info(const char *path, struct stat *info){
 
-    struct stat info;
-    if(stat(path, &info) == -1){
+    if(stat(path, info) == -1){
         // fprintf(stderr, "Error geting file info\n");
         // exit(1); //never use exit in function -> because if you are in middle of something it aborts
         // function should only except error
@@ -24,15 +23,11 @@ int get_file_info(const char *path, struct stat *info){
 int read_file(const char *path, char *content, size_t blocksize){
     
     FILE *f;
-    
-
-    size_t file_size = fileinfo.st_size;
-
-    char buffer[fileinfo.st_blksize];  // you could use statvfs too , it also applies to folders
+    char buffer[blocksize];  // you could use statvfs too , it also applies to folders
     size_t size;
     size_t total=0;
 
-     if( (f = fopen(name,"r")) == NULL){
+     if( (f = fopen(path,"r")) == NULL){
         return -1;
         //fprintf(stderr, "Failed to open file\n");
         //exit(1);
@@ -57,18 +52,24 @@ int main(){
     struct stat info;
     if(get_file_info(name, &info)){
         fprintf(stderr, "Error geting file info\n");
-        exit(1);
+        goto error;
     }
 
     char *file_content = malloc(info.st_size);
-    if(read_file(name, file_content, info_st_blksize)){
-        fprintf(stderr, "Failed to open file\n");
-        exit(2);
-    }
 
-    free(file_content);
-    // if you exit then this free won't work, now it is okay because by exit here we free memory
+    if(read_file(name, file_content, info.st_blksize)){
+        fprintf(stderr, "Failed to open file\n");
+        goto error;
+    }
+    //printf("%s\n", file_content); //there is no /0 there in file
+    // it might gives you no error because in memory you got a chance and next there was 0
+    fwrite(file_content, sizeof(char), info.st_size, stdout);
+    printf("\n");
 
     return 0;
+error:
+    free(file_content);
+    return -1;
+    // if you exit then this free won't work, now it is okay because by exit here we free memory
 }
 
