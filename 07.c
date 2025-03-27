@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
+#include <string.h>
 
 int main(){
 
@@ -12,7 +13,11 @@ int main(){
         exit(1);
     }
 
-    if(fwrite("Hello world",1 ,11, f) != 11){ //11 * 1 Byte
+    char * data = "Hello world";
+    // I am making it dynamic, so will use strlen but 
+    //it can give me segmentation fault if the string have no \0
+
+    if(fwrite(data, sizeof(char), strlen(data), f) != 11){ //11 * 1 Byte
     
         printf("Error!\n");
         exit(1);
