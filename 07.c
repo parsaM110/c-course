@@ -8,39 +8,31 @@ int main(){
 
     FILE *f;
 
-    if( (f = fopen("testfile1.txt","w")) == NULL){
+    if( (f = fopen("data.txt","r")) == NULL){
         printf("Failed to open file\n");
         exit(1);
     }
 
-    char * data = "Hello world";
-    // I am making it dynamic, so will use strlen but 
-    //it can give me segmentation fault if the string have no \0
+    char buffer[4096];
+    int size;
+    size = fread(buffer, sizeof(char), sizeof(buffer)/sizeof(char), f);
+    // how to understand the file have ended when the buffer return something less than your buffer
+    // if you again try to read it will block you
+    // this is why you can use pipe
+    printf("%d bytes read from file\n", size);
 
-    if(fwrite(data, sizeof(char), strlen(data), f) != 11){ //11 * 1 Byte
+    // you can use stat.h to get the size in structure it provide
+    // allocate regarding the size
+    // but we dont do it usually
+
+    // we dont have EOF or EOT 
+    // in interactive protocols like telnet or ftp they use this
+    // in http it is not http, the socket is closed after ending or the size is in header file
+
     
-        printf("Error!\n");
-        exit(1);
+    
+    fclose(f); 
 
-    }
-    printf("File Written Successfully\n");
-    fclose(f); //if you don't close 
-    if(chmod("testfile1.txt", 0600) == -1){ // linux permissions are 8base numbers (Octals)
-        printf("Failed to set file permissions\n");
-        exit(1);
-    }
     return 0;
 }
 
-// if you now run :
-/**
-
-ll testfile1.txt 
--rw-rw-r-- 1 ubuntu ubuntu 11 Mar 27 21:50 testfile1.txt 
-
-
-hexdump -C testfile1.txt 
-00000000  48 65 6c 6c 6f 20 77 6f  72 6c 64                 |Hello world|
-0000000b
-
-*/
