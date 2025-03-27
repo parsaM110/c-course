@@ -1,75 +1,52 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct _Node; //declare (in older c you have to use it like this but in newer no need for declare)
-typedef struct _Node Node; //aliasing
-
-struct _Node{ // _Node means it is internal
-        int data;
-        Node *next;  
-        // in newer gcc versions you can say only by typedef: 
-        // Node *next;
-    };
-
-
-
-Node  *linklist_add(Node *H, int data){
-
-    Node *tmp = malloc(sizeof(Node));
-    tmp->data = data;
-    tmp->next = NULL;
-
-    while (H && H->next)
-    {
-        H = H->next;
-    }
-    if(H) 
-        H->next = tmp;
-     return tmp;
-
-}
-
-void linklist_move(Node *H, size_t n)
-{
-    Node *tmp, *cur=H;
-    int i =0;
-    for(; i<n && cur && cur->next && cur->next->next; i++){
-        cur = cur->next;
-    }
-    if((n-i) != -1){
-            return ;
-        }
-    tmp = cur->next;
-    cur->next = tmp->next;
-
-    while(cur->next){
-        cur = cur->next;
-    }
-    cur->next = tmp;
-    tmp->next = NULL;
-}
 
 
 int main(){
 
-    Node *head=NULL, *tail=NULL, *cur=NULL;
-
-    // if we define simple variable in stack it is going to be automatic 
-    // *cur we are changing the it to different places
-    // head but is going to go to heap
-    // we want to pass this linked list to different functions like delete , ... 
-
-    for(int i=10; i<20; i++){
-        int d;
-        scanf("%d",&d);
-        tail = linklist_add(head, d);
-    }
-    if(!head){
-        head = tail;
-    }
+    // Variadic 
+    //   %[fill][width|*][,][.perc]type
+    // , (separate number by 3 digits)
+    // perc is for precision 
+    // fill empty by space or 0
+    // * give with placeholder you should give 2 variadic for width
 
 
+
+    // if use s in ptrinf for print string it should have /0 otherwise you get segmentation fault
+
+
+    printf("Hello\t");
+    printf("Result: %d \t %d \n",10 ,10); // get how many parameter it needs by seeing %
+    
+    printf("Result: %*d ###\n",5 ,10);
+    printf("Result: %2d ###\n",1000);
+
+
+    int age;
+    printf("Age: ");
+    scanf("%d", &age); //terminal either understand char or string (array of char)
+    // so if you use c read, you have to use atoi for conversion to integer
+
+    // if you enter 36 you get 2Byte data: [51][54] 
+
+    //atoi is not secure though, use strtol (is called str2l)
+
+    printf("Birth: %d\n", 2023-age);
+
+
+    // why when we we enter   36test   invalid data it still works?
+
+    // because it goes to place that cant be turn into number 
+
+    //strtol gives you the address of end where it stopped conversion
+
+    // for validating conversion subtract length of input to this address
+
+    //scanf do all of these
+    
+    
     return 0;
-
 }
 
