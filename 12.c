@@ -2,8 +2,12 @@
 
 
 #ifndef PI // if client has not given by client I give default value
-#define PI 3.14
+#error Your system is too old 
+// #define PI 3.14
 #endif
+
+
+
 
 int main(){
 
