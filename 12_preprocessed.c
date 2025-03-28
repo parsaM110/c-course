@@ -740,8 +740,7 @@ extern int __overflow (FILE *, int);
 
 
 
-
-# 7 "12.c"
+# 6 "12.c"
 int main(){
 
     double r;

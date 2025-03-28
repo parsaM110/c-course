@@ -1,8 +1,9 @@
 #include <stdio.h>
 
-#define PI 3.14
-#define GREET
 
+#ifndef PI // if client has not given by client I give default value
+#define PI 3.14
+#endif
 
 int main(){
 
