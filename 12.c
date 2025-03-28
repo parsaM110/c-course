@@ -11,13 +11,7 @@
 
 int main(){
 
-    #include "12data.txt"
-    // you can also do int Z[] = #include ... 
-    // and there you just put {1,2,3,4} but you will get warnings
-    // check the output by gcc -E ,,,
-
     double r;
-    // Macros are not c statrements so no need to ; (just find and replace)
 
     #ifdef GREET 
     printf("Hello dear user \n");
@@ -27,6 +21,21 @@ int main(){
     printf("PLease enter circle radius: ");
 
     scanf("%lf", &r);
+
+    if(r<=0){
+        //fprintf(stderr, "Error in radius\n (01.c - 26)"); 
+        // not good for big code
+        fprintf(stderr, "Error in radius\n %s %d \n", __FILE__, __LINE__); 
+        // these MACROs doesn't have # because users used them and become popular they add it
+
+        // they mostly log in file, we here log in stdout
+        fprintf(stderr, "Compiled at :\n %s %s \n", __DATE__, __TIME__); 
+        // gives us compile time and date
+        // good for -h switch
+
+        fprintf(stderr, "Error in radius\n %s \n", __func__); 
+        // macro  __PRETTY_FUNCTION__ is for cpp
+    }
 
     double area = PI * r * r;
 
