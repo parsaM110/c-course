@@ -2,9 +2,14 @@
 
 
 #ifndef PI // if client has not given by client I give default value
-#error Your system is too old 
+
+// #error Your system is too old 
+
+#warning Your system is old and application will run slowly
+
 // #define PI 3.14
 #endif
+
 
 
 
