@@ -745,9 +745,16 @@ extern int __overflow (FILE *, int);
 int main(){
 
     double r;
-    printf("PLease enter circle radius: ");
-    scanf("%lf", &r);
 
+
+
+    printf("Hello dear user \n");
+
+
+
+    printf("PLease enter circle radius: ");
+
+    scanf("%lf", &r);
 
     double area = 3.14 * r * r;
 
