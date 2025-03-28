@@ -2,15 +2,21 @@
 
 # default
 all: libarea.o main.o
-	@echo "I am all" 
+	@gcc objs/*.o -o program
 #put @ to echo instructs too
 
 libarea.o:
+	@mkdir -p objs
+	@gcc -c libarea.c -o objs/libarea.o
+	cd -
 
 main.o:
+	@mkdir -p objs
+	@gcc -c main.c -o objs/main.o
 
-clean.o:
+clean:
+	@rm -r objs
 
 install:
-	@echo "I am install"
-
+	@echo "I am Installing"
+	@cp program /usr/bin/program
