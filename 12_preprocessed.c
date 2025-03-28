@@ -735,19 +735,20 @@ extern int __overflow (FILE *, int);
 # 902 "/usr/include/stdio.h" 3 4
 
 # 2 "12.c" 2
+# 12 "12.c"
 
-
-
-
-
-# 6 "12.c"
+# 12 "12.c"
 int main(){
+
+# 1 "12data.txt" 1
+int Z[] = {1,2,3,4};
+# 15 "12.c" 2
 
     double r;
 
 
 
-    printf("Hello dear user \n");
+
 
 
 

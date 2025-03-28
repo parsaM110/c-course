@@ -2,12 +2,7 @@
 
 
 #ifndef PI // if client has not given by client I give default value
-
-// #error Your system is too old 
-
-#warning Your system is old and application will run slowly
-
-// #define PI 3.14
+#define PI 3.14
 #endif
 
 
@@ -15,6 +10,11 @@
 
 
 int main(){
+
+    #include "12data.txt"
+    // you can also do int Z[] = #include ... 
+    // and there you just put {1,2,3,4} but you will get warnings
+    // check the output by gcc -E ,,,
 
     double r;
     // Macros are not c statrements so no need to ; (just find and replace)
