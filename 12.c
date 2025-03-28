@@ -3,20 +3,23 @@
 #include <unistd.h>
 
 
+void run_in_separated_process(){
+    if(fork()!=0) return;
+
+    // Do the process
+    printf("Child is running .. (%d)\n", getpid());
+
+    exit(0); // it goes and the parent code so exit to don't do it
+}
+
+
 int main(){
-    int test = 100;
+   
+   printf("Started\n");
 
-    printf("Hello\n");
+   run_in_separated_process();
 
-    pid_t res = fork();
-    if(res == 0){
-        printf("I am child\n");
-    }else{
-        printf("I am parent\n");
-    }
-
-  
-    printf("Bye (%d): %d\n", getpid(), test);
+   printf("Parent Done (%d)\n", getpid());
 
     return 0;
 } 
