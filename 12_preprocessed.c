@@ -735,30 +735,23 @@ extern int __overflow (FILE *, int);
 # 902 "/usr/include/stdio.h" 3 4
 
 # 2 "12.c" 2
-# 12 "12.c"
 
-# 12 "12.c"
+
+
+
+
+
+# 7 "12.c"
 int main(){
 
-# 1 "12data.txt" 1
-int Z[] = {1,2,3,4};
-# 15 "12.c" 2
+    int DATA[20];
 
-    double r;
+    printf("Count: %ld\n", sizeof(DATA)/sizeof(DATA[0]));
 
 
+    if(sizeof(DATA)/sizeof(DATA[0])^12){
 
-
-
-
-
-    printf("PLease enter circle radius: ");
-
-    scanf("%lf", &r);
-
-    double area = 3.14 * r * r;
-
-    printf("AREA: %.2f\n", area);
+    }
 
     return 0;
 
