@@ -6,13 +6,13 @@
 
 void handler(int sig){
     printf("\n\n\n SIGNAL %d HAPPEND\n", sig);
-    // if you don't exit, it will continue its normal procedure
-    goto(GETINPUT);
 }
 
 int main(){
     int age;
     signal(SIGINT, handler); //register
+    singal(SIGKILL, handler);
+
 
 
      while(1){
