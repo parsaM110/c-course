@@ -6,18 +6,28 @@
 
 
 int main(){
-    printf("Ok, going to background ...\n");
+    // char buf[255];
 
-    sleep(5);
+    // while(1){
+    //     printf("Please enter your name: ");
+    //     // scanf("%s", buf);
+    //     // scanf returns numbers of items it received 
+    //     if(scanf("%s", buf) == 1)
+    //         break;
+    // }
 
-    // if(fork()!=0) exit(0); //parent is exited 
-    if(fork()!=0) {
-        sleep(10);
-        exit(0);
+    int age;
+     while(1){
+        printf("Please enter your Age: ");
+
+        if(scanf("%d", &age) == 1)
+            break;
+
+        // if you give invalid number like test
+        // it stays in scanf buffer
+        // scanf doesn't consume it 
+        // cause it always be fail
+        // infinite printf loop
     }
-
-
-
-    sleep(60); // this is child
     return 0;
 }
