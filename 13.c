@@ -10,9 +10,10 @@ void handler(int sig){
 
 int main(){
     int age;
-    signal(SIGINT, handler); //register
-    singal(SIGKILL, handler);
-
+    if(signal(SIGINT, handler) == SIG_ERR)
+        printf("Cannot handle signal SIGINT\n");
+    if(signal(SIGKILL, handler) == SIG_ERR)
+        printf("Cannot handle signal SIGKILL\n");
 
 
      while(1){
