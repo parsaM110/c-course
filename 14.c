@@ -1,6 +1,7 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <bsd/stdlib.h>
 #include <time.h>
+
 
 
 #define SIZE(A) (sizeof(A)/sizeof(A[0]))
@@ -33,7 +34,8 @@ void sort(int *buf, size_t count){
     //             SWAP(buf[j], buf[j+1]);
     //         }
 
-    qsort(buf, count, sizeof(int), is_greater); 
+    //qsort(buf, count, sizeof(int), is_greater); 
+    mergesort(buf, count, sizeof(int), is_greater); 
 }
 
 int main(){
