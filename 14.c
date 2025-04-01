@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 
 #define SIZE(A) (sizeof(A)/sizeof(A[0]))
@@ -11,7 +12,7 @@
 
 
 static inline void generate_randoms(int *buf, size_t count){
-        srandom(10);
+        srandom(time(NULL));
     for(int i=0; i < 10; i++)
         //buf[i] = (int) (((double) random() / RAND_MAX)*90 + 10); // number between 10 - 100
     // RAND_MAX is 2^31 + 1 which you can compute but use macro instead
