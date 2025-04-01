@@ -19,18 +19,13 @@ static inline void generate_randoms(int *buf, size_t count){
 
 // bubble sort
 void sort(int *buf, size_t count){
-    for(int i=0; i<count-1; i++)
+    for(int i=0; i<count; i++)
         for(int j=0; j<count-1; j++)
-            if(buf[i] > buf[i+1]){
-                int t = buf[i];
-                buf[i] = buf[i+1];
-                buf[i+1] = t;
-
-
+            if(buf[j] > buf[j+1]){
                 //xor swap -> for integer
-                // buf[i] = buf[i] ^ buf[i+1];
-                // buf[i+1] = buf[i+1] ^ buf[i];
-                // buf[i] = buf[i] ^ buf[i+1];
+                buf[j] = buf[j] ^ buf[j+1];
+                buf[j+1] = buf[j+1] ^ buf[j];
+                buf[j] = buf[j] ^ buf[j+1];
             }
 }
 
