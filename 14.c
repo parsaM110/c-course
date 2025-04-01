@@ -3,34 +3,43 @@
 #include <time.h>
 
 
-#define SIZE(A) (sizeof(A)/sizeof(A[0]))
-#define PRINT_ARRAY(A,C)  do{\
-                            for(int i=0; i<C; i++)\
-                                printf("%d ",A[i]);\
-                            printf("\n");\
-                        }while (0);
-#define SWAP(A,B) do{A =A ^ B; B = B ^ A; A= A ^ B;}while(0);
-
-static inline void generate_randoms(int *buf, size_t count){
-        srandom(time(NULL));
-    for(int i=0; i < 10; i++)
-        buf[i] = random() % 90 + 10;
+void test(){
+    printf("Hello world\n");
 }
 
-// bubble sort
-void sort(int *buf, size_t count){
-    for(int i=0; i<count; i++)
-        for(int j=0; j<count-1; j++)
-            if(buf[j] > buf[j+1]){
-                SWAP(buf[j], buf[j+1]);
-            }
+void test2(int a){
+    printf("Hello world %d!\n",a);
+}
+
+int *copy_and_filter(const int *data, size_t count, int **out){
+    // if you malloc you can allocate with exact size
+    // but you cant get data from stack and you should use heap
+    // I will malloc my self and will return the memory address 
+    // I will return count and for error handling cant be used because size_t is unisigend int
+
+    int out_counter =0;
+    for(int i = 0;i<count;i++){
+        if(data[i] % 2 == 0){
+            out[out_counter++] = data[i];
+        return out_counter;
+        }
+    }
 }
 
 int main(){
-    int n[10];
-    generate_randoms(n, SIZE(n));
-    PRINT_ARRAY(n, SIZE(n));
-    sort(n, SIZE(n));
-    PRINT_ARRAY(n, SIZE(n));
+    //simple func 
+    // test();
+
+
+    // void() *
+    void (*func)(int); //func is pointer function name
+
+    func = test2;
+    // or (both works)
+    func = &test2;
+
+
+    func(20); //is like test(20)
+    return 0;
 
 }
