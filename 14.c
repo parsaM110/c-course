@@ -13,7 +13,11 @@
 static inline void generate_randoms(int *buf, size_t count){
         srandom(10);
     for(int i=0; i < 10; i++)
-        buf[i] = random();
+        //buf[i] = (int) (((double) random() / RAND_MAX)*90 + 10); // number between 10 - 100
+    // RAND_MAX is 2^31 + 1 which you can compute but use macro instead
+    // converting number and floating computation is bad and in some devices not supported
+        buf[i] = random() % 90 + 10;
+        //instead use %
 }
 
 int main(){
@@ -22,7 +26,3 @@ int main(){
     PRINT_ARRAY(n, SIZE(n));
 
 }
-
-//problem with this code is in MACRO the method I use for print is for stack array
-// for pointer arrays(allocated by malloc) it won't work (can't get the size because it is dynamic) -> segmentation fault
-// it is better to get size manually and not documentation(no body read that)
