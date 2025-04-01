@@ -14,16 +14,31 @@
 static inline void generate_randoms(int *buf, size_t count){
         srandom(time(NULL));
     for(int i=0; i < 10; i++)
-        //buf[i] = (int) (((double) random() / RAND_MAX)*90 + 10); // number between 10 - 100
-    // RAND_MAX is 2^31 + 1 which you can compute but use macro instead
-    // converting number and floating computation is bad and in some devices not supported
         buf[i] = random() % 90 + 10;
-        //instead use %
+}
+
+// bubble sort
+void sort(int *buf, size_t count){
+    for(int i=0; i<count-1; i++)
+        for(int j=0; j<count-1; j++)
+            if(buf[i] > buf[i+1]){
+                int t = buf[i];
+                buf[i] = buf[i+1];
+                buf[i+1] = t;
+
+
+                //xor swap -> for integer
+                // buf[i] = buf[i] ^ buf[i+1];
+                // buf[i+1] = buf[i+1] ^ buf[i];
+                // buf[i] = buf[i] ^ buf[i+1];
+            }
 }
 
 int main(){
     int n[10];
     generate_randoms(n, SIZE(n));
+    PRINT_ARRAY(n, SIZE(n));
+    sort(n, SIZE(n));
     PRINT_ARRAY(n, SIZE(n));
 
 }
