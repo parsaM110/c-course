@@ -6,7 +6,7 @@
 
 void *my_thread(void *data){
 
-    sleep(3);
+    sleep(5);
     printf("Hello Thread\n");
     return NULL; //if you don't want to return anything return NULL
 }
@@ -19,8 +19,10 @@ int main(){
 
     pthread_create(&t1,NULL, my_thread, NULL);
 
-    sleep(5);
+    sleep(3);
     printf("main finished\n");
+    void *ret;
+    pthread_join(t1, &ret);
     return 0;
 
 }
