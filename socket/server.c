@@ -21,6 +21,7 @@ int main(){
         exit(1);
     }
     address.sin_addr.s_addr = INADDR_ANY;
+    address.sin_family = AF_INET;
     address.sin_port = htons(80); //Byte order convert
 
 
