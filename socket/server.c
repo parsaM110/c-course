@@ -46,10 +46,21 @@ int main(){
         size_t len;
         send(client_fd, "\n", 1, 0);
         while(1){
-            len = read(client_fd, buf, 5);
-            send(client_fd, buf, len, 0);
-            if(len < 5)
+            int error = 0;
+            socklen_t slen = sizeof(error);
+            int ret = getsockopt(client_fd, SOL_SOCKET, SO_ERROR, &error, &slen);
+            if(ret != 0){
+                perror("Error socket state");
                 break;
+            }
+            if(error != 0){
+                perror("Error socket error");
+                break;
+            }
+            len = read(client_fd, buf, 5);
+            if(len <= 0)
+                break;
+            send(client_fd, buf, len, 0);
         }
         close(client_fd);
         
