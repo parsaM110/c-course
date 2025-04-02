@@ -53,10 +53,6 @@ int main(){
                 perror("Error socket state");
                 break;
             }
-            if(error != 0){
-                perror("Error socket error");
-                break;
-            }
             len = read(client_fd, buf, 5);
             if(len <= 0)
                 break;
