@@ -39,15 +39,20 @@ int main(){
     int clientsize = sizeof(client_addr);
 
     while(1){
-        printf("wainting for connection ...\n");
+        printf("\nwainting for connection ...\n");
         client_fd = accept(server_fd, (struct sockaddr *)&client_addr, (socklen_t *)&clientsize);
-        printf("New Connection received\n");
-        char buf[1024];
+        printf("New Connection received\n\n");
+        char buf[5];
         size_t len;
-
-        len = read(client_fd, buf, 1024);
-        send(client_fd, "Hello!", 6,0);
-        send(client_fd, buf, len, 0);
+        send(client_fd, "\n", 1, 0);
+        while(1){
+            len = read(client_fd, buf, 5);
+            send(client_fd, buf, len, 0);
+            if(len < 5)
+                break;
+        }
+        close(client_fd);
+        
         // in tcp we don't have additional feature in layer 4
     }
 
