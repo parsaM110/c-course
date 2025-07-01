@@ -384,3 +384,12 @@ switch(a){
 }
 ```
 and if a was equal 2 it  jumps to `case 2` then it goes to `case 3` and until end, so if you should use break after each case if you want each scope code be for each case
+
+
+
+## Runnig binary file in linux
+```
+chmod +x binary_file_name
+ # then execute it
+ ./binary_file_name
+```
